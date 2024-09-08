@@ -26,13 +26,13 @@
 
         layer2 {
           bindings = <
-          &trans &trans &trans &trans &trans &trans &kp K_UNDO &kp K_PASTE &kp K_COPY &kp K_CUT &kp C_SNAPSHOT &trans &trans &trans &trans &trans &trans &trans &kp LEFT &kp DOWN &kp UP &kp RIGHT &kp CAPSLOCK &trans &kp LEFT_SHIFT &trans &trans &trans &trans &trans &kp C_PREVIOUS &kp C_VOLUME_DOWN &kp C_VOLUME_UP &kp C_NEXT &kp C_PLAY_PAUSE &trans &trans &trans &trans &trans &trans &trans
+          &trans &trans &trans &trans &trans &trans &kp K_UNDO &kp K_PASTE &kp K_COPY &kp K_CUT &kp C_SNAPSHOT &trans &trans &trans &trans &trans &trans &trans &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &kp LEFT_SHIFT &trans &trans &trans &trans &trans &kp C_PREVIOUS &kp C_VOLUME_DOWN &kp C_VOLUME_UP &kp C_NEXT &kp C_PLAY_PAUSE &trans &trans &trans &trans &trans &trans &trans
           >;
         };
 
         layer3 {
           bindings = <
-          &LEFT_BRACE &RIGHT_BRACE &AMPS &STAR &LPAR &RPAR &none &none &none &none &none &trans &trans &UNDERSCORE &DLLR &PERCENT &CARET &PLUS &none &none &none &none &none &trans &GRAVE &EXCL &AT &POUND &PIPE &none &none &none &none &none &none &trans &trans &trans &trans &trans &trans &trans
+          &LBRC &RBRC &AMPS &ASTERISK &LPAR &RPAR &none &none &none &none &none &trans &trans &UNDERSCORE &DLLR &PERCENT &CARET &PLUS &none &none &none &none &none &trans &GRAVE &EXCL &AT &POUND &PIPE &none &none &none &none &none &none &trans &trans &trans &trans &trans &trans &trans
           >;
         };
 
