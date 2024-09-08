@@ -1,4 +1,3 @@
-
   /*
   * Copyright (c) 2020 The ZMK Contributors
   *
@@ -15,7 +14,7 @@
       compatible = "zmk,keymap";
   layer0 {
           bindings = <
-          &kp TAB &kp Q &kp W &kp F &kp P &kp B &kp J &kp L &kp U &kp Y &kp SEMICOLON &kp BACKSPACE &kp LEFT_CONTROL &kp A &kp R &kp S &kp T &kp G &kp M &kp N &kp E &kp I &kp O &kp SINGLE_QUOTE &kp LEFT_SHIFT &kp Z &kp X &kp C &kp D &kp V &kp K &kp H &kp COMMA &kp DOT &kp SLASH &mt LEFT_SHIFT ESCAPE &mo 4 &mo 2 &mt LEFT_ALT SPACE [[RGUI_T(KC_ENT)]] &mo 1 &mo 3
+          &kp TAB &kp Q &kp W &kp F &kp P &kp B &kp J &kp L &kp U &kp Y &kp SEMICOLON &kp BACKSPACE &kp LEFT_CONTROL &kp A &kp R &kp S &kp T &kp G &kp M &kp N &kp E &kp I &kp O &kp SINGLE_QUOTE &kp LEFT_SHIFT &kp Z &kp X &kp C &kp D &kp V &kp K &kp H &kp COMMA &kp DOT &kp SLASH &mt LEFT_SHIFT ESCAPE &mo 4 &mo 2 &mt LEFT_ALT SPACE &none &mo 1 &mo 3
           >;
         };layer1 {
           bindings = <
@@ -27,7 +26,7 @@
           >;
         };layer3 {
           bindings = <
-          [[LSFT(KC_LBRC)]] [[LSFT(KC_RBRC)]] [[KC_AMPR]] [[KC_ASTR]] [[KC_LPRN]] [[KC_RPRN]] &none &none &none &none &none &trans &none [[KC_UNDS]] [[KC_DLR]] [[KC_PERC]] [[KC_CIRC]] [[KC_PLUS]] &none &none &none &none &none &trans &none [[LSFT(KC_GRV)]] [[KC_EXLM]] [[KC_AT]] [[KC_HASH]] [[LSFT(KC_BSLS)]] &none &none &none &none &none &trans &trans &trans &trans &trans &trans &trans
+          &none &none &none &none &none &none &none &none &none &none &none &trans &none &none &none &none &none &none &none &none &none &none &none &trans &none &none &none &none &none &none &none &none &none &none &none &trans &trans &trans &trans &trans &trans &trans
           >;
         };layer4 {
           bindings = <
