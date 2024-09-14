@@ -1,33 +1,5 @@
-name: ZMK Build
-
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        board: ["nice_nano_v2"]
-        shield: ["corne_left", "corne_right"]
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Set Up West
-        run: |
-          pip install west
-          mkdir -p .west
-          cp config/west.yml .west/manifest.yml  # Copy your config file to .west
-          west init -m https://github.com/zmkfirmware/zmk --mr main
-          west update
-
-      - name: Verify west.yml Exists
-        run: |
-          ls -l .west/manifest.yml  # Check if manifest.yml is there
-          cat .west/manifest.yml     # Display the contents of manifest.yml for verification
-
-      - name: Build Firmware
-        run: |
-          west build -b ${{ matrix.board }} --shield ${{ matrix.shield }} zmk/app
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
