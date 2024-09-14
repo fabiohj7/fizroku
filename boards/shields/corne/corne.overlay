@@ -1,0 +1,8 @@
+&oled_display {
+   compatible = "ssd1306";
+   i2c = <&i2c1>;  // Or the correct I2C bus for your setup
+   width = <128>;
+   height = <32>;
+   label = "OLED Display";
+};
+
