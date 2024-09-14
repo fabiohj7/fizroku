@@ -1,5 +1,27 @@
+# .github/workflows/build-user-config.yml
+name: ZMK Build
+
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        board: ["nice_nano_v2"]
+        shield: ["corne_left", "corne_right"]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set Up West
+        run: |
+          pip install west
+          west init -m https://github.com/zmkfirmware/zmk --mr main
+          west update
+
+      - name: Build Firmware
+        run: |
+          west build -b ${{ matrix.board }} --shield ${{ matrix.shield }} zmk/app
