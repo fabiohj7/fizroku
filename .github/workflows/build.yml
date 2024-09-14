@@ -21,9 +21,14 @@ jobs:
           west init -m https://github.com/zmkfirmware/zmk --mr main
           west update
 
+      - name: Copy Custom West File
+        run: |
+          cp config/west.yml .west/manifest.yml  # Move your config file to .west folder
+
       - name: Verify west.yml Exists
         run: |
-          ls -l zmk/west.yml  # Check if west.yml is there
+          ls -l .west/manifest.yml  # Check if manifest.yml is there
+          cat .west/manifest.yml     # Display the contents of manifest.yml for verification
 
       - name: Build Firmware
         run: |
