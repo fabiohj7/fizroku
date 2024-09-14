@@ -17,8 +17,85 @@
 #     artifact-name: corne_left_with_logging
 #
 ---
-include:
-  - board: nice_nano_v2
-    shield: corne_left
-  - board: nice_nano_v2
-    shield: corne_right
+name: ZMK Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - board: nice_nano_v2
+            shield: corne_left
+          - board: nice_nano_v2
+            shield: corne_right
+
+    steps:
+      # Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up the environment for Zephyr and ZMK
+      - name: Set up Zephyr environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y \
+            git \
+            cmake \
+            gperf \
+            ccache \
+            dfu-util \
+            dtc \
+            python3-pip \
+            python3-setuptools \
+            python3-wheel \
+            python3-dev \
+            ninja-build \
+            g++ \
+            wget \
+            unzip \
+            xz-utils \
+            file \
+            make \
+            gcc-arm-none-eabi \
+            python3-west \
+            python3-yaml
+
+          # Install Zephyr SDK
+          wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.0/zephyr-sdk-0.16.0-x86_64-linux-setup.run
+          chmod +x zephyr-sdk-0.16.0-x86_64-linux-setup.run
+          sudo ./zephyr-sdk-0.16.0-x86_64-linux-setup.run -- -d /opt/zephyr-sdk
+
+          # Install west tool
+          pip3 install west
+
+      # Initialize the West build system
+      - name: Initialize west
+        run: |
+          west init -l config/
+          west update
+
+      # Build ZMK firmware for the current matrix combination
+      - name: Build ZMK Firmware
+        run: |
+          west build -b ${{ matrix.board }} --shield ${{ matrix.shield }} -DZMK_CONFIG=config
+        env:
+          SHIELD: ${{ matrix.shield }}
+
+      # Custom build command for LVGL sample with SSD1306
+      - name: Build LVGL Sample with SSD1306
+        run: |
+          west build -b frdm_k64f --shield ssd1306_128x64 samples/subsys/display/lvgl
+
+      # Upload the firmware artifacts (optional)
+      - name: Upload firmware
+        uses: actions/upload-artifact@v3
+        with:
+          name: zmk_firmware_${{ matrix.board }}_${{ matrix.shield }}
+          path: build/zephyr/zmk.uf2
