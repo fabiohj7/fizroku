@@ -18,12 +18,10 @@ jobs:
       - name: Set Up West
         run: |
           pip install west
+          mkdir -p .west
+          cp config/west.yml .west/manifest.yml  # Copy your config file to .west
           west init -m https://github.com/zmkfirmware/zmk --mr main
           west update
-
-      - name: Copy Custom West File
-        run: |
-          cp config/west.yml .west/manifest.yml  # Move your config file to .west folder
 
       - name: Verify west.yml Exists
         run: |
